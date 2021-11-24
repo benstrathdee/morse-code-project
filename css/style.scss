@@ -8,7 +8,7 @@ main {
     padding: 5%;
     font-family: arial;
     @media only screen and (max-width: 1000px) {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 }
 %container {
