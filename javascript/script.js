@@ -7,9 +7,7 @@ const result = document.getElementById("result")
 
 morseButton.addEventListener("click", () => {
     result.innerText = translate(alphaToMorse, "input");
-    console.log(translate(alphaToMorse, "input"));
 })
 alphaButton.addEventListener("click", () => {
     result.innerText = translate(morseToAlpha, "input")
-    console.log(translate(morseToAlpha, "input"));
 })
