@@ -1,15 +1,17 @@
 import { alphaToMorse, morseToAlpha } from "./translation-keys.js";
 
 export const translate = (translator, inputFrom) => {
-    const morseRegex = new RegExp(/\.|-| |\/|/g);
-    const alphaRegex = new RegExp(/[A-za-z0–9]/g);
     const error = "Invalid characters present, please try again.";
     let toTranslate = document.getElementById(inputFrom).value;
     let translateArr = [];
     let translatedArr = [];
+
     if (translator === alphaToMorse) {
         translateArr = toTranslate.toLowerCase().split('');
-        if (alphaRegex.test(translateArr)) {
+        const entriesArray = Object.values(morseToAlpha);
+        const everyCheck = (item) => entriesArray.includes(item);
+
+        if (translateArr.every((item) => everyCheck(item))) {
             translatedArr = translateArr.map((char) => {
                 if (char === " ") {
                     return " / "
@@ -20,13 +22,19 @@ export const translate = (translator, inputFrom) => {
                     };
                 }
             })
+
         } else {
             return error;
         }
         
     } else {
+
         translateArr = toTranslate.split(' ');
-        if (morseRegex.test(translateArr)) {
+        const checkArr = toTranslate.split('').filter((item) => item != "/");
+        const entriesArray = Object.values(alphaToMorse);
+        const everyCheck = (item) => entriesArray.includes(item);
+
+        if (checkArr.every((item) => everyCheck(item))) {
             translatedArr = translateArr.map((char) => {
                 if (char === "/") {
                     return " "
